@@ -31,6 +31,12 @@
     forAllSystems = f: nixpkgs.lib.genAttrs
       supportedSystems (system: f nixpkgs.legacyPackages.${system});
   in {
+    devShells = forAllSystems (pkgs: {
+      default = pkgs.mkShell {
+        packages = [ self.packages.${pkgs.system}.epiclang ];
+      };
+    });
+
     packages = forAllSystems (pkgs: {
       default = self.packages.${pkgs.system}.epiclang;
 
