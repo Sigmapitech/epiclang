@@ -1,0 +1,61 @@
+{
+  "nodes": {
+    "epiclang-src": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1758641293,
+        "narHash": "sha256-Wi8IE5/dKVlSeoZF/46nATHFp2BhXHtUhymiuw88opw=",
+        "ref": "refs/heads/main",
+        "rev": "e82d502b8c0ee8ebcf93aac45723b148b45ec81b",
+        "revCount": 1,
+        "type": "git",
+        "url": "ssh://git@github.com/Epitech/epiclang.git"
+      },
+      "original": {
+        "type": "git",
+        "url": "ssh://git@github.com/Epitech/epiclang.git"
+      }
+    },
+    "nixpkgs": {
+      "locked": {
+        "lastModified": 1758427187,
+        "narHash": "sha256-pHpxZ/IyCwoTQPtFIAG2QaxuSm8jWzrzBGjwQZIttJc=",
+        "owner": "NixOS",
+        "repo": "nixpkgs",
+        "rev": "554be6495561ff07b6c724047bdd7e0716aa7b46",
+        "type": "github"
+      },
+      "original": {
+        "owner": "NixOS",
+        "ref": "nixos-unstable",
+        "repo": "nixpkgs",
+        "type": "github"
+      }
+    },
+    "root": {
+      "inputs": {
+        "epiclang-src": "epiclang-src",
+        "nixpkgs": "nixpkgs",
+        "ruleset-v4": "ruleset-v4"
+      }
+    },
+    "ruleset-v4": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1758728339,
+        "narHash": "sha256-f09IjxW5Vse3pVSvBllYzR3Zu9/+DMfNYqVycUDOSBA=",
+        "ref": "refs/heads/main",
+        "rev": "fc6cf589fa1d4fff46d013f125d656eb7a8b9f0a",
+        "revCount": 233,
+        "type": "git",
+        "url": "ssh://git@github.com/Epitech/banana-coding-style-checker.git"
+      },
+      "original": {
+        "type": "git",
+        "url": "ssh://git@github.com/Epitech/banana-coding-style-checker.git"
+      }
+    }
+  },
+  "root": "root",
+  "version": 7
+}
