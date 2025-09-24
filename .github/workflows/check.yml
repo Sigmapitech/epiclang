@@ -35,7 +35,8 @@ jobs:
           ./result/bin/epiclang smoke/good.c
 
           # bad.c should fail
-          if ./result/bin/epiclang smoke/bad.c; then
+          if clang-20 -fplugin=/path/to/libbanana_clang.so smoke/bad.c 2>&1 \
+             | grep -q "\[Banana\]"; then
             echo "bad.c unexpectedly passed"
             exit 1
           fi
