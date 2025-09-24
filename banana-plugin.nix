@@ -20,6 +20,8 @@ clangStdenv.mkDerivation {
     llvmPackages_20.libllvm
   ];
 
+  patches = [ ./banana-plugin-fix-includes.patch ];
+
   postPatch = ''
     substituteInPlace CMakeLists.txt \
       --replace-fail 'clang-20' '${lib.getExe' clang_20 "clang"}' \
