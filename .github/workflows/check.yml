@@ -1,0 +1,41 @@
+name: Build
+
+on:
+  push:
+  pull_request:
+  workflow_dispatch:
+
+jobs:
+  build:
+    strategy:
+      matrix:
+        os: [ubuntu-latest, macos-latest]
+    runs-on: ${{ matrix.os }}
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Install SSH key
+        uses: shimataro/ssh-key-action@v2
+        with:
+          key: ${{ secrets.GH_SSH_PRIVATE_KEY }}
+          known_hosts: $GH_PUB_KEY
+
+      - name: Install Nix
+        uses: cachix/install-nix-action@v30
+        with:
+          extra_nix_config: |
+            experimental-features = nix-command flakes
+
+      - name: Build epiclang
+        run: NIXPKGS_ALLOW_UNFREE=1 nix build .#epiclang --impure --print-build-logs
+
+      - name: Build Epiclang
+        run: |
+          ./result/bin/epiclang smoke/good.c
+
+          # bad.c should fail
+          if ./result/bin/epiclang smoke/bad.c; then
+            echo "bad.c unexpectedly passed"
+            exit 1
+          fi
