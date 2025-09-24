@@ -16,7 +16,7 @@ stdenvNoCC.mkDerivation {
   postPatch = ''
     substituteInPlace epiclang.py \
       --replace-fail 'clang-20' '${lib.getExe clang_20}' \
-      --replace-fail '/usr/lib/epiclang/plugins' '${lib.getLib banana-plugin}'
+      --replace-fail '/usr/lib/epiclang/plugins' '${lib.getLib banana-plugin}/lib'
 
     sed -i "1i #!${lib.getExe python3}" epiclang.py
   '';
