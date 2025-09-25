@@ -42,15 +42,16 @@
     "ruleset-v4": {
       "flake": false,
       "locked": {
-        "lastModified": 1758728339,
-        "narHash": "sha256-f09IjxW5Vse3pVSvBllYzR3Zu9/+DMfNYqVycUDOSBA=",
+        "lastModified": 1758794599,
+        "narHash": "sha256-C76+AqgbjN6eCn/eOLV+Z10RvlixpBTQlKZ/lQcsx64=",
         "ref": "refs/heads/main",
-        "rev": "fc6cf589fa1d4fff46d013f125d656eb7a8b9f0a",
-        "revCount": 233,
+        "rev": "fbde9fe1c9a81a65fddcf102dbb78fe642c043a0",
+        "revCount": 236,
         "type": "git",
         "url": "ssh://git@github.com/Epitech/banana-coding-style-checker.git"
       },
       "original": {
+        "rev": "fbde9fe1c9a81a65fddcf102dbb78fe642c043a0",
         "type": "git",
         "url": "ssh://git@github.com/Epitech/banana-coding-style-checker.git"
       }
