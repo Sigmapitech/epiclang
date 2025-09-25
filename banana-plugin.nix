@@ -1,12 +1,10 @@
 {
   lib,
-  clangStdenv,
-  clang_20,
+  llvmPackages_20,
   ruleset-v4,
   cmake,
-  llvmPackages_20,
 }:
-clangStdenv.mkDerivation {
+llvmPackages_20.stdenv.mkDerivation {
   pname = "banana-plugin";
   version = "4.0-unstable-2025-09-24";
 
@@ -14,19 +12,18 @@ clangStdenv.mkDerivation {
 
   nativeBuildInputs = [ cmake ];
 
-  buildInputs = [
-    clang_20
-    llvmPackages_20.libclang
-    llvmPackages_20.libllvm
+  buildInputs = with llvmPackages_20; [
+    libclang
+    libllvm
   ];
 
-  postPatch = ''
-    substituteInPlace CMakeLists.txt \
-      --replace-fail 'clang-20' '${lib.getExe' clang_20 "clang"}' \
-      --replace-fail 'clang++-20' '${lib.getExe' clang_20 "clang++"}'
+  cmakeFlags = [
+    "-DCMAKE_VERBOSE_MAKEFILE:BOOL=ON"
+  ];
 
-      echo "install(TARGETS banana_clang DESTINATION lib)" | tee -a CMakeLists.txt
-      echo "install(DIRECTORY include/ DESTINATION include)" | tee -a CMakeLists.txt
+  preConfigure = ''
+    # The provided CMakeLists.txt is quite bad...
+    cp ${./CMakeLists.txt} CMakeLists.txt
   '';
 
   meta = {
