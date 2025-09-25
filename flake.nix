@@ -5,7 +5,7 @@
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
 
     ruleset-v4 = {
-      url = "git+ssh://git@github.com/Epitech/banana-coding-style-checker.git";
+      url = "git+ssh://git@github.com/Epitech/banana-coding-style-checker.git?rev=f56825bb8bd6c99cb4391a3a4da1d5057b4c3260";
       flake = false;
     };
 
