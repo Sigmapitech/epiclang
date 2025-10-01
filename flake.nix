@@ -34,6 +34,11 @@
     devShells = forAllSystems (pkgs: {
       default = pkgs.mkShell {
         packages = [ self.packages.${pkgs.system}.epiclang ];
+        CC = pkgs.lib.getExe self.packages.${pkgs.system}.epiclang;
+      };
+
+      dev = pkgs.mkShell {
+        inputsFrom = [ self.packages.${pkgs.system}.epiclang ];
       };
     });
 
