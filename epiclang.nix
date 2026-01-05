@@ -33,5 +33,6 @@ stdenvNoCC.mkDerivation {
     description = "Compiler wrapper used to compile Epitech C projects";
     license = lib.licenses.unfree;
     maintainers = with lib.maintainers; [ sigmanificient ];
+    mainProgram = "epiclang";
   };
 }
