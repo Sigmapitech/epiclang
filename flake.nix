@@ -34,26 +34,30 @@
        config.allowUnfree = true;
       }));
   in {
-    devShells = forAllSystems (pkgs: {
+    devShells = forAllSystems (pkgs: let
+      inherit (pkgs.stdenv.hostPlatform.system) system;
+    in {
       default = pkgs.mkShell {
-        packages = [ self.packages.${pkgs.system}.epiclang ];
-        CC = pkgs.lib.getExe self.packages.${pkgs.system}.epiclang;
+        packages = [ self.packages.${system}.epiclang ];
+        CC = pkgs.lib.getExe self.packages.${system}.epiclang;
       };
 
       dev = pkgs.mkShell {
-        inputsFrom = [ self.packages.${pkgs.system}.epiclang ];
+        inputsFrom = [ self.packages.${system}.epiclang ];
       };
     });
 
-    packages = forAllSystems (pkgs: {
-      default = self.packages.${pkgs.system}.epiclang;
+    packages = forAllSystems (pkgs: let
+      inherit (pkgs.stdenv.hostPlatform.system) system;
+    in {
+      default = self.packages.${system}.epiclang;
 
       banana-plugin = pkgs.callPackage ./banana-plugin.nix {
         inherit ruleset-v4;
       };
 
       epiclang = pkgs.callPackage ./epiclang.nix {
-        inherit (self.packages.${pkgs.system}) banana-plugin;
+        inherit (self.packages.${system}) banana-plugin;
         inherit epiclang-src;
       };
     });
