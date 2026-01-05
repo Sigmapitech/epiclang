@@ -29,7 +29,10 @@
     ];
 
     forAllSystems = f: nixpkgs.lib.genAttrs
-      supportedSystems (system: f nixpkgs.legacyPackages.${system});
+      supportedSystems (system: f (import nixpkgs {
+       inherit system;
+       config.allowUnfree = true;
+      }));
   in {
     devShells = forAllSystems (pkgs: {
       default = pkgs.mkShell {
